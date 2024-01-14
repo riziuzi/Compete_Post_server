@@ -8,7 +8,6 @@ const { Public_Post_Model, Private_Post_Model } = require("./database")
 const jwt = require('jsonwebtoken');
 
 // using middlewares
-app.use(cors())
 db = "mongodb+srv://riziuzi:XmUu8mx0k42IDepu@postscluster.qxshe4b.mongodb.net/?retryWrites=true&w=majority"
 mongoose
   .connect(db)
@@ -45,6 +44,7 @@ app.get("/load-post", async (req, res) => {
         .limit(defaultLimit)
         .lean();
       totalCount = await Private_Post_Model.countDocuments({ userId: userId });
+      console.log(1)
     } 
     else {
       posts = await Public_Post_Model.find(query)
@@ -52,6 +52,7 @@ app.get("/load-post", async (req, res) => {
         .limit(defaultLimit)
         .lean();
       totalCount = await Public_Post_Model.countDocuments({});
+      console.log(2)
     }
 
     res.status(200).send({
@@ -72,7 +73,6 @@ app.get("/load-post", async (req, res) => {
 app.post("/create-post", async (req, res) => {
   try {
     const { data, userId } = req.body;
-
     const newPost = await Private_Post_Model.create({
       data: data,
       userId: userId,

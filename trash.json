@@ -1,0 +1,30 @@
+[
+    {
+        "id": "initialBlockId",
+        "type": "paragraph",
+        "props": {
+            "textColor": "default",
+            "backgroundColor": "default",
+            "textAlignment": "left"
+        },
+        "content": [
+            {
+                "type": "text",
+                "text": "Hello",
+                "styles": {}
+            }
+        ],
+        "children": []
+    },
+    {
+        "id": "750dab21-d053-4d8f-9f90-9749ded5f59b",
+        "type": "paragraph",
+        "props": {
+            "textColor": "default",
+            "backgroundColor": "default",
+            "textAlignment": "left"
+        },
+        "content": [],
+        "children": []
+    }
+]
