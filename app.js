@@ -172,7 +172,8 @@ app.post("/make-private", async (req, res) => {
   }
 })
 
+const port = process.env.PORT || 3002
 
-app.listen(3002, () => {
+app.listen(port, () => {
   console.log("Server started listening on localhost:3002")
 })
