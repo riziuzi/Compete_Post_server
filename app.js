@@ -13,11 +13,17 @@ mongoose
   .connect(db)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log("err"));
-  app.use(cors({
-    origin: 'https://compete-j0qb.onrender.com',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  }));
+app.options('*', cors({
+  origin: 'https://compete-j0qb.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
+
+app.use(cors({
+  origin: 'https://compete-j0qb.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 app.use(express.json())     // to parse the incoming requset's JSON formatted string to JS object (accessed in the req.body)
 app.use(express.urlencoded({ extended: true }))
 
@@ -34,7 +40,7 @@ app.get("/load-post", async (req, res) => {
   try {
     let posts;
     let totalCount;
-    if(isPrivate && !userId) return res.status(400).send({success : false, error : "Private is only the property of the a defined userId, you must pass a userId"})
+    if (isPrivate && !userId) return res.status(400).send({ success: false, error: "Private is only the property of the a defined userId, you must pass a userId" })
     const query = userId ? { userId: userId } : {};
     if (skipLastId) {
       query._id = { $lt: skipLastId };
@@ -46,7 +52,7 @@ app.get("/load-post", async (req, res) => {
         .lean();
       totalCount = await Private_Post_Model.countDocuments({ userId: userId });
       console.log(1)
-    } 
+    }
     else {
       posts = await Public_Post_Model.find(query)
         .sort({ lastUpdatedDate: -1 })
