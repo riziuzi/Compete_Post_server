@@ -13,10 +13,11 @@ mongoose
   .connect(db)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log("err"));
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true,
-}))
+  app.use(cors({
+    origin: 'https://compete-j0qb.onrender.com/',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
 app.use(express.json())     // to parse the incoming requset's JSON formatted string to JS object (accessed in the req.body)
 app.use(express.urlencoded({ extended: true }))
 
